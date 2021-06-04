@@ -18,6 +18,17 @@ function getNLUInstance(){
 return naturalLanguageUnderstanding;
 }
 
+const analyzeParams = {
+  'html': '<html><head><title>Fruits</title></head><body><h1>Apples and Oranges</h1><p>I love apples! I don\'t like oranges.</p></body></html>',
+  'features': {
+    'emotion': {
+      'targets': [
+        'apples',
+        'oranges'
+      ]
+    }
+  }
+};
 const app = new express();
 
 app.use(express.static('client'))
