@@ -35,9 +35,11 @@ app.get("/url/emotion", (req,res) => {
 const query = req.query.url
   'html': query,
   'features': {
+        'keywords': {
     'sentiment': false,
                 'emotion': true,
                 'limit':10
+    }
   }
 }
     
@@ -56,9 +58,11 @@ app.get("/url/sentiment", (req,res) => {
 const query = req.query.url
   'html': query,
   'features': {
-    'sentiment': true,
-                'emotion': false,
+   'keywords': {
+    'sentiment': false,
+                'emotion': true,
                 'limit':10
+    }
   }
 }
     naturalLanguageUnderstanding.analyze(analyzeParams)
@@ -76,9 +80,11 @@ app.get("/text/emotion", (req,res) => {
 const text = req.query.text
   'html': query,
   'features': {
+      'keywords': {
     'sentiment': false,
                 'emotion': true,
                 'limit':10
+    }
   }
 }
     naturalLanguageUnderstanding.analyze(analyzeParams)
@@ -97,10 +103,11 @@ app.get("/text/sentiment", (req,res) => {
 const text = req.query.text
   'html': query,
   'features': {
-    'sentiment': true,
-                'emotion': false,
+    'keywords': {
+    'sentiment': false,
+                'emotion': true,
                 'limit':10
-  }
+    }
 }
      naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
