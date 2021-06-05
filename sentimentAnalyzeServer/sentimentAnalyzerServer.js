@@ -18,17 +18,7 @@ function getNLUInstance(){
 return naturalLanguageUnderstanding;
 }
 
-const analyzeParams = {
-  'html': '<html><head><title>Fruits</title></head><body><h1>Apples and Oranges</h1><p>I love apples! I don\'t like oranges.</p></body></html>',
-  'features': {
-    'emotion': {
-      'targets': [
-        'apples',
-        'oranges'
-      ]
-    }
-  }
-};
+
 const app = new express();
 
 app.use(express.static('client'))
@@ -41,6 +31,16 @@ app.get("/",(req,res)=>{
   });
 
 app.get("/url/emotion", (req,res) => {
+    const analyzeParams = {
+const query = req.query.url
+  'html': query,
+  'features': {
+    'sentiment': false,
+                'emotion': true,
+                'limit':10
+  }
+}
+    
 naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
    res.send(JSON.stringify(analysisResults, null, 2));
@@ -51,6 +51,16 @@ naturalLanguageUnderstanding.analyze(analyzeParams)
 });
 
 app.get("/url/sentiment", (req,res) => {
+    
+    const analyzeParams = {
+const query = req.query.url
+  'html': query,
+  'features': {
+    'sentiment': true,
+                'emotion': false,
+                'limit':10
+  }
+}
     naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
     res.send(JSON.stringify(analysisResults, null, 2));
@@ -61,6 +71,16 @@ app.get("/url/sentiment", (req,res) => {
     });
 
 app.get("/text/emotion", (req,res) => {
+    
+    const analyzeParams = {
+const text = req.query.text
+  'html': query,
+  'features': {
+    'sentiment': false,
+                'emotion': true,
+                'limit':10
+  }
+}
     naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
     res.send(JSON.stringify(analysisResults, null, 2));
@@ -71,6 +91,17 @@ app.get("/text/emotion", (req,res) => {
 });
 
 app.get("/text/sentiment", (req,res) => {
+    
+    
+       const analyzeParams = {
+const text = req.query.text
+  'html': query,
+  'features': {
+    'sentiment': true,
+                'emotion': false,
+                'limit':10
+  }
+}
      naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
     res.send(JSON.stringify(analysisResults, null, 2));
