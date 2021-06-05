@@ -78,7 +78,7 @@ app.get("/text/emotion", (req,res) => {
     
     const analyzeParams = {
 const text = req.query.text
-  'html': query,
+  'text': text,
   'features': {
       'keywords': {
     'sentiment': false,
@@ -101,7 +101,7 @@ app.get("/text/sentiment", (req,res) => {
     
        const analyzeParams = {
 const text = req.query.text
-  'html': query,
+  'text': text,
   'features': {
     'keywords': {
     'sentiment': false,
