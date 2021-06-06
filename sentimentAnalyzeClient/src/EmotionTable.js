@@ -9,10 +9,10 @@ class EmotionTable extends React.Component {
           {JSON.stringify(this.props.emotions)}
           <table className="table table-bordered">
             <tbody>
-            {Object.keys(this.props.emotions).map((key) => (
+            {Object.keys(this.props.emotions).map((index) => (
 								<tr>
-									<td>{key}</td>
-									<td>{this.props.emotions[key]}</td>
+									<td>{index}</td>
+									<td>{this.props.emotions[index]}</td>
 								</tr>
 							))
             }
